@@ -109,7 +109,7 @@ List<Planet> planets = <Planet>[
   Planet(
     name: 'Jupiter',
     color: Colors.brown,
-    diameter: 2.0,
+    diameter: 1.7,
     moons: [],
     description:
         'Jupiter is the fifth planet from the Sun and the largest in the Solar System. It is a giant planet.',
@@ -125,7 +125,7 @@ List<Planet> planets = <Planet>[
   Planet(
     name: 'Saturn',
     color: Colors.lime,
-    diameter: 1.75,
+    diameter: 1.55,
     moons: [],
     description:
         'Saturn is the sixth planet from the Sun and the second-largest in the Solar System, after Jupiter.',

@@ -112,7 +112,7 @@ class PlanetPageState extends State<PlanetPage> with TickerProviderStateMixin {
               curve: Curves.ease,
               right: 0.0,
               left: 0.0,
-              top: 1.2 * moonsWidgetHeight * _swipeAnimController.value,
+              top: 1.1 * moonsWidgetHeight * _swipeAnimController.value,
               child: AnimatedOpacity(
                 duration: Duration(milliseconds: 200),
                 opacity: _swipeAnimController.value.clamp(0.4, 1.0),

@@ -90,14 +90,14 @@ class PlanetSelectorState extends State<PlanetSelector>
             padding: const EdgeInsets.only(top: 40.0),
             decoration: BoxDecoration(
                 border: Border(
-              bottom: BorderSide(color: Colors.grey, width: 3.0),
+              bottom: BorderSide(color: Colors.grey, width: 2.5),
             )),
             child: Text(
               '${widget.planets[widget.currentPlanetIndex].name.toUpperCase()}',
               style: TextStyle(
                 color: Colors.grey,
                 fontSize: 20.0,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w500,
               ),
             ),
           ),
