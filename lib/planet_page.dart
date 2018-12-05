@@ -104,7 +104,7 @@ class PlanetPageState extends State<PlanetPage> with TickerProviderStateMixin {
               bottom: -(0.15 * moonsWidgetHeight),
               child: Hero(
                 tag: '${moon.name}',
-                child: CelestialBodyWidget(moon.gifAssetPath),
+                child: CelestialBodyWidget(moon.vidAssetPath),
               ),
             ),
             AnimatedPositioned(
@@ -217,7 +217,7 @@ class PlanetPageState extends State<PlanetPage> with TickerProviderStateMixin {
               rect: _planetRect(screenSize),
               child: Hero(
                 tag: widget.currentPlanet.name,
-                child: CelestialBodyWidget(widget.currentPlanet.gifAssetPath),
+                child: CelestialBodyWidget(widget.currentPlanet.vidAssetPath),
               ),
             ),
             PositionedTransition(
@@ -225,19 +225,20 @@ class PlanetPageState extends State<PlanetPage> with TickerProviderStateMixin {
               child: _buildMoons(screenSize),
             ),
             Positioned(
-              right: 10.0 * (_swipeAnimController.value),
-              bottom: screenSize.height * 0.3,
+              right: -160 + (10.0 * (_swipeAnimController.value)),
+              top: -100,
               child: IgnorePointer(
                 ignoring: true,
                 child: SlideTransition(
                   position:
-                      Tween<Offset>(begin: Offset.zero, end: Offset(1.0, 0.0))
+                      Tween<Offset>(begin: Offset.zero, end: Offset(0.0, 1.0))
                           .animate(_onNavigationAnimController),
                   child: ScaleTransition(
                     scale: Tween<double>(begin: 1.0, end: 1.05)
                         .animate(_swipeAnimController),
                     child: Image.asset(
                       'assets/flare.png',
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),

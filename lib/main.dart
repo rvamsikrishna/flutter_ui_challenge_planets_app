@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_xore/astronaut.dart';
 import 'package:flutter_xore/model.dart';
 import 'package:flutter_xore/planet_name.dart';
@@ -11,6 +12,7 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([ DeviceOrientation.portraitUp ]);
     return MaterialApp(
       home: HomePage(),
     );

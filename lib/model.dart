@@ -15,7 +15,7 @@ List<Planet> planets = <Planet>[
     history:
         'The earliest known recorded observations of Mercury are from the Mul.Apin tablets. These observations were most likely made by an Assyrian astronomer around the 14th century BC.[119] The cuneiform name used to designate Mercury on the Mul.Apin tablets is transcribed as Udu.Idim.Guu4.Ud ("the jumping planet"). Babylonian records of Mercury date back to the 1st millennium BC. The Babylonians called the planet Nabu after the messenger to the gods in their mythology.',
     imgAssetPath: 'assets/mercury.jpg',
-    gifAssetPath: 'assets/mercury.gif',
+    vidAssetPath: 'assets/mercury.webp',
   ),
   Planet(
     name: 'Venus',
@@ -31,7 +31,7 @@ List<Planet> planets = <Planet>[
     history:
         'Though some ancient civilizations referred to Venus both as the "morning star" and as the "evening star", names that reflect the assumption that these were two separate objects, the earliest recorded observations of Venus by the ancient Sumerians show that they recognized Venus as a single object,[128] associated it with the goddess Inanna.[128][129][130] Inanna\'s movements in several of her myths, including Inanna and Shukaletuda and Inanna\'s Descent into the Underworld appear to parallel the motion of the planet Venus.[128] The Venus tablet of Ammisaduqa, believed to have been compiled around the mid-seventeenth century BCE,[131] shows the Babylonians understood the two were a single object, referred to in the tablet as the "bright queen of the sky", and could support this view with detailed observations.',
     imgAssetPath: 'assets/venus.jpg',
-    gifAssetPath: 'assets/venus.gif',
+    vidAssetPath: 'assets/venus.webp',
   ),
   Planet(
     name: 'Earth',
@@ -48,7 +48,7 @@ List<Planet> planets = <Planet>[
         history:
             'Understanding of the Moon\'s cycles was an early development of astronomy: by the 5th century BC, Babylonian astronomers had recorded the 18-year Saros cycle of lunar eclipses,[169] and Indian astronomers had described the Moon\'s monthly elongation.[170] The Chinese astronomer Shi Shen (fl. 4th century BC) gave instructions for predicting solar and lunar eclipses.[171] Later, the physical form of the Moon and the cause of moonlight became understood. The ancient Greek philosopher Anaxagoras (d. 428 BC) reasoned that the Sun and Moon were both giant spherical rocks, and that the latter reflected the light of the former.[172][173] Although the Chinese of the Han Dynasty believed the Moon to be energy equated to qi, their radiating influence theory also recognized that the light of the Moon was merely a reflection of the Sun, and Jing Fang (78–37 BC) noted the sphericity of the Moon.[174] In the 2nd century AD, Lucian wrote the novel A True Story, in which the heroes travel to the Moon and meet its inhabitants. In 499 AD, the Indian astronomer Aryabhata mentioned in his Aryabhatiya that reflected sunlight is the cause of the shining of the Moon.[175] The astronomer and physicist Alhazen (965–1039) found that sunlight was not reflected from the Moon like a mirror, but that light was emitted from every part of the Moon\'s sunlit surface in all directions.[176] Shen Kuo (1031–1095) of the Song dynasty created an allegory equating the waxing and waning of the Moon to a round ball of reflective silver that, when doused with white powder and viewed from the side, would appear to be a crescent.',
         imgAssetPath: 'assets/moon.jpg',
-        gifAssetPath: 'assets/moon.gif',
+        vidAssetPath: 'assets/moon.webp',
       )
     ],
     diameter: 1.0,
@@ -61,7 +61,7 @@ List<Planet> planets = <Planet>[
     history:
         'Earth\'s atmosphere and oceans were formed by volcanic activity and outgassing. Water vapor from these sources condensed into the oceans, augmented by water and ice from asteroids, protoplanets, and comets.[60] In this model, atmospheric "greenhouse gases" kept the oceans from freezing when the newly forming Sun had only 70% of its current luminosity.[61] By 3.5 Bya, Earth\'s magnetic field was established, which helped prevent the atmosphere from being stripped away by the solar wind.',
     imgAssetPath: 'assets/earth.jpg',
-    gifAssetPath: 'assets/earth.gif',
+    vidAssetPath: 'assets/earth.webp',
   ),
   Planet(
     name: 'Mars',
@@ -77,7 +77,7 @@ List<Planet> planets = <Planet>[
         history:
             'The origin of Mars\'s moons is unknown and the hypotheses are controversial. The main hypotheses are that they formed either by capture or by accretion. Because of the similarity to the composition of C- or D-type asteroids, one hypothesis is that the moons may be objects captured into Martian orbit from the asteroid belt, with orbits that have been circularized either by atmospheric drag or tidal forces,[23] as capture requires dissipation of energy. The current Martian atmosphere is too thin to capture a Phobos-sized object by atmospheric braking.[19] Geoffrey Landis has pointed out that the capture could have occurred if the original body was a binary asteroid that separated due to tidal forces.[24] The main alternative hypothesis is that the moons accreted in the present position. Another hypothesis is that Mars was once surrounded by many Phobos- and Deimos-sized bodies, perhaps ejected into orbit around it by a collision with a planetesimal',
         imgAssetPath: 'assets/deimos.jpg',
-        gifAssetPath: 'assets/deimos.gif',
+        vidAssetPath: 'assets/deimos.webp',
       ),
       Moon(
         name: 'Phobos',
@@ -90,7 +90,7 @@ List<Planet> planets = <Planet>[
         history:
             'The origin of the Martian moons is still controversial.[44] Phobos and Deimos both have much in common with carbonaceous C-type asteroids, with spectra, albedo, and density very similar to those of C- or D-type asteroids.[45] Based on their similarity, one hypothesis is that both moons may be captured main-belt asteroids.[46][47] Both moons have very circular orbits which lie almost exactly in Mars\'s equatorial plane, and hence a capture origin requires a mechanism for circularizing the initially highly eccentric orbit, and adjusting its inclination into the equatorial plane, most probably by a combination of atmospheric drag and tidal forces,[48] although it is not clear that sufficient time is available for this to occur for Deimos.[44] Capture also requires dissipation of energy. The current Martian atmosphere is too thin to capture a Phobos-sized object by atmospheric braking.[44] Geoffrey A. Landis has pointed out that the capture could have occurred if the original body was a binary asteroid that separated under tidal forces.',
         imgAssetPath: 'assets/phobos.jpg',
-        gifAssetPath: 'assets/phobos.gif',
+        vidAssetPath: 'assets/phobos.webp',
       )
     ],
     color: Colors.red,
@@ -104,7 +104,7 @@ List<Planet> planets = <Planet>[
     history:
         'The ancient Sumerians believed that Mars was Nergal, the god of war and plague.[258] During Sumerian times, Nergal was a minor deity of little significance,[258] but, during later times, his main cult center was the city of Nineveh.[258] In Mesopotamian texts, Mars is referred to as the "star of judgement of the fate of the dead".[259] The existence of Mars as a wandering object in the night sky was recorded by the ancient Egyptian astronomers and, by 1534 BCE, they were familiar with the retrograde motion of the planet.[260] By the period of the Neo-Babylonian Empire, the Babylonian astronomers were making regular records of the positions of the planets and systematic observations of their behavior. For Mars, they knew that the planet made 37 synodic periods, or 42 circuits of the zodiac, every 79 years. They invented arithmetic methods for making minor corrections to the predicted positions of the planets.[261][262] In Ancient Greek, the planet was known as Πυρόεις.',
     imgAssetPath: 'assets/mars.jpg',
-    gifAssetPath: 'assets/mars.gif',
+    vidAssetPath: 'assets/mars.webp',
   ),
   Planet(
     name: 'Jupiter',
@@ -120,7 +120,7 @@ List<Planet> planets = <Planet>[
     history:
         'The observation of Jupiter dates back to at least the Babylonian astronomers of the 7th or 8th century BC.[102] The ancient Chinese also observed the orbit of Suìxīng (歲星) and established their cycle of 12 earthly branches based on its approximate number of years; the Chinese language still uses its name (simplified as 岁) when referring to years of age. By the 4th century BC, these observations had developed into the Chinese zodiac,[103] with each year associated with a Tai Sui star and god controlling the region of the heavens opposite Jupiter\'s position in the night sky; these beliefs survive in some Taoist religious practices and in the East Asian zodiac\'s twelve animals, now often popularly assumed to be related to the arrival of the animals before Buddha. The Chinese historian Xi Zezong has claimed that Gan De, an ancient Chinese astronomer, discovered one of Jupiter\'s moons in 362 BC with the unaided eye. If accurate, this would predate Galileo\'s discovery by nearly two millennia.[104][105] In his 2nd century work the Almagest, the Hellenistic astronomer Claudius Ptolemaeus constructed a geocentric planetary model based on deferents and epicycles to explain Jupiter\'s motion relative to Earth, giving its orbital period around Earth as 4332.38 days, or 11.86 years.',
     imgAssetPath: 'assets/jupiter.jpg',
-    gifAssetPath: 'assets/jupiter.gif',
+    vidAssetPath: 'assets/jupiter.webp',
   ),
   Planet(
     name: 'Saturn',
@@ -136,7 +136,7 @@ List<Planet> planets = <Planet>[
     history:
         'The observation and exploration of Saturn can be divided into three main phases. The first era was ancient observations (such as with the naked eye), before the invention of the modern telescopes. Starting in the 17th century, progressively more advanced telescopic observations from Earth have been made. The third phase is visitation by space probes, by either orbiting or flyby. In the 21st century, observations continue from Earth (including Earth-orbiting observatories like the Hubble Space Telescope) and, until its 2017 retirement, from the Cassini orbiter around Saturn.',
     imgAssetPath: 'assets/saturn.jpg',
-    gifAssetPath: 'assets/saturn.gif',
+    vidAssetPath: 'assets/saturn.webp',
   ),
   Planet(
     name: 'Uranus',
@@ -152,7 +152,7 @@ List<Planet> planets = <Planet>[
     history:
         'Like the classical planets, Uranus is visible to the naked eye, but it was never recognised as a planet by ancient observers because of its dimness and slow orbit.[21] Sir William Herschel announced its discovery on 13 March 1781, expanding the known boundaries of the Solar System for the first time in history and making Uranus the first planet discovered with a telescope.',
     imgAssetPath: 'assets/uranus.jpg',
-    gifAssetPath: 'assets/uranus.jpg',
+    vidAssetPath: 'assets/uranus.webp',
   ),
   Planet(
     name: 'Neptune',
@@ -168,7 +168,7 @@ List<Planet> planets = <Planet>[
     history:
         'Some of the earliest recorded observations ever made through a telescope, Galileo\'s drawings on 28 December 1612 and 27 January 1613 contain plotted points that match up with what is now known to be the position of Neptune. On both occasions, Galileo seems to have mistaken Neptune for a fixed star when it appeared close—in conjunction—to Jupiter in the night sky;[22] hence, he is not credited with Neptune\'s discovery. At his first observation in December 1612, Neptune was almost stationary in the sky because it had just turned retrograde that day. This apparent backward motion is created when Earth\'s orbit takes it past an outer planet. Because Neptune was only beginning its yearly retrograde cycle, the motion of the planet was far too slight to be detected with Galileo\'s small telescope.[23] In July 2009, University of Melbourne physicist David Jamieson announced new evidence suggesting that Galileo was at least aware that the "star" he had observed had moved relative to the fixed stars.',
     imgAssetPath: 'assets/neptune.jpg',
-    gifAssetPath: 'assets/neptune.gif',
+    vidAssetPath: 'assets/neptune.webp',
   ),
 ];
 
@@ -185,7 +185,7 @@ class Planet extends CelestialBody {
     String formation,
     String history,
     String imgAssetPath,
-    String gifAssetPath,
+    String vidAssetPath,
   }) : super(
           name: name,
           diameter: diameter,
@@ -195,7 +195,7 @@ class Planet extends CelestialBody {
           formation: formation,
           history: history,
           imgAssetPath: imgAssetPath,
-          gifAssetPath: gifAssetPath,
+          vidAssetPath: vidAssetPath,
         );
 }
 
@@ -207,7 +207,7 @@ class Moon extends CelestialBody {
       String formation,
       String history,
       String imgAssetPath,
-      String gifAssetPath})
+      String vidAssetPath})
       : super(
           name: name,
           diameter: 0.28,
@@ -217,7 +217,7 @@ class Moon extends CelestialBody {
           formation: formation,
           history: history,
           imgAssetPath: imgAssetPath,
-          gifAssetPath: gifAssetPath,
+          vidAssetPath: vidAssetPath,
         );
 }
 
@@ -230,7 +230,7 @@ class CelestialBody {
   final String formation;
   final String history;
   final String imgAssetPath;
-  final String gifAssetPath;
+  final String vidAssetPath;
 
   CelestialBody({
     @required this.name,
@@ -241,6 +241,6 @@ class CelestialBody {
     this.formation,
     this.history,
     this.imgAssetPath,
-    this.gifAssetPath,
+    this.vidAssetPath,
   });
 }
