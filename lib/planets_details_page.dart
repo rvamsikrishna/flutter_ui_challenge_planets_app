@@ -67,7 +67,7 @@ class PlanetDetailsPageState extends State<PlanetDetailsPage>
             right: 0.0,
             child: Hero(
               tag: widget.selected.name,
-              child: CelestialBodyWidget(widget.selected.gifAssetPath),
+              child: CelestialBodyWidget(widget.selected.vidAssetPath),
             ),
           ),
           Positioned(
