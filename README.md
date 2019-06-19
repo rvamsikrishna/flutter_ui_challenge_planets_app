@@ -2,8 +2,8 @@
 ## Flutter UI challenge - planets app
 Recreated the design by [Anto Skvortsovn ](https://dribbble.com/shots/4220958-xore-solar-system)
 
+![ezgif com-video-to-gif (3)](https://user-images.githubusercontent.com/31307345/59754277-6565b680-92a3-11e9-81f9-d8b9161b1732.gif)
 
-![home page](https://lh3.googleusercontent.com/n5kKPDDlVFpGv2VPi2R0gEQdty_tSOx8kIJg_FrEU7Q9D6Z-9BYQ_kPo3P9m7SlDv3a5wrmPoUhg)
 
 
 ![2nd page](https://lh3.googleusercontent.com/-SOVGujMREgf4VcXFUg1MpAU_Zy7p_-94-ysOgJAu3RhefEiWtPekGYUhPiKRiWkfNl-2_4vRUe6)
