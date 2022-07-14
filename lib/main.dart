@@ -12,8 +12,9 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([ DeviceOrientation.portraitUp ]);
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: HomePage(),
     );
   }
@@ -67,7 +68,8 @@ class HomePageState extends State<HomePage> {
                 planets: _planets,
                 currentPlanetIndex: _currentPlanetIndex,
                 onArrowClick: _handleArrowClick,
-                onPlanetClicked: () => _navigationStreamController.sink.add(null),
+                onPlanetClicked: () =>
+                    _navigationStreamController.sink.add(null),
               ),
             ),
           ),
