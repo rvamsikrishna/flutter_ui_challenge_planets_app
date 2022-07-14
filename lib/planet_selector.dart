@@ -1,20 +1,20 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_xore/model.dart';
-import 'package:flutter_xore/planet_widget.dart';
+import 'model.dart';
+import 'planet_widget.dart';
 
 class PlanetSelector extends StatefulWidget {
-  final List<Planet> planets;
-  final int currentPlanetIndex;
-  final Function onArrowClick;
-  final VoidCallback onPlanetClicked;
+  final List<Planet>? planets;
+  final int? currentPlanetIndex;
+  final Function? onArrowClick;
+  final VoidCallback? onPlanetClicked;
 
   const PlanetSelector({
-    Key key,
+    Key? key,
     this.planets,
     this.currentPlanetIndex,
-    @required this.screenSize,
+    required this.screenSize,
     this.onArrowClick,
     this.onPlanetClicked,
   }) : super(key: key);
@@ -29,8 +29,8 @@ class PlanetSelector extends StatefulWidget {
 
 class PlanetSelectorState extends State<PlanetSelector>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-  Tween<double> _rotationTween;
+  late AnimationController _controller;
+  late Tween<double> _rotationTween;
 
   @override
   initState() {
@@ -43,7 +43,7 @@ class PlanetSelectorState extends State<PlanetSelector>
 
     _rotationTween = Tween<double>(
       begin: 0.0,
-      end: widget.currentPlanetIndex.toDouble(),
+      end: widget.currentPlanetIndex!.toDouble(),
     );
 
     _controller.forward();
@@ -54,7 +54,7 @@ class PlanetSelectorState extends State<PlanetSelector>
     if (widget.currentPlanetIndex != oldWidget.currentPlanetIndex) {
       _rotationTween = Tween<double>(
         begin: _rotationTween.evaluate(_controller),
-        end: widget.currentPlanetIndex.toDouble(),
+        end: widget.currentPlanetIndex!.toDouble(),
       );
 
       _controller.forward(from: 0.0);
@@ -84,7 +84,7 @@ class PlanetSelectorState extends State<PlanetSelector>
         opacity: _controller,
         child: GestureDetector(
           onTap: () {
-            widget.onPlanetClicked();
+            widget.onPlanetClicked!();
           },
           child: Container(
             padding: const EdgeInsets.only(top: 40.0),
@@ -93,7 +93,7 @@ class PlanetSelectorState extends State<PlanetSelector>
               bottom: BorderSide(color: Colors.grey, width: 2.5),
             )),
             child: Text(
-              '${widget.planets[widget.currentPlanetIndex].name.toUpperCase()}',
+              '${widget.planets![widget.currentPlanetIndex!].name!.toUpperCase()}',
               style: TextStyle(
                 color: Colors.grey,
                 fontSize: 20.0,
@@ -119,7 +119,7 @@ class PlanetSelectorState extends State<PlanetSelector>
           onPressed: widget.currentPlanetIndex == 0
               ? null
               : () {
-                  widget.onArrowClick(ClickDirection.Left);
+                  widget.onArrowClick!(ClickDirection.Left);
                 },
         ),
       ),
@@ -139,7 +139,7 @@ class PlanetSelectorState extends State<PlanetSelector>
           onPressed: widget.currentPlanetIndex == planets.length - 1
               ? null
               : () {
-                  widget.onArrowClick(ClickDirection.Right);
+                  widget.onArrowClick!(ClickDirection.Right);
                 },
         ),
       ),
@@ -156,7 +156,7 @@ class PlanetSelectorState extends State<PlanetSelector>
       _rightArrowButton()
     ];
 
-    for (int i = 0; i < widget.planets.length; i++) {
+    for (int i = 0; i < widget.planets!.length; i++) {
       final double radialOffset = _widgetHeight / 2;
       final double radianDiff = (2 * pi) / planets.length;
       final double rotationFactor = _rotationTween.animate(_controller).value;

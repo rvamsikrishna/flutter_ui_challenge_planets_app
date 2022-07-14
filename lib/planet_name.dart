@@ -3,9 +3,9 @@ import 'dart:math' as Math;
 import 'package:flutter/material.dart';
 
 class PlanetName extends StatefulWidget {
-  final String name;
+  final String? name;
 
-  const PlanetName({Key key, this.name}) : super(key: key);
+  const PlanetName({Key? key, this.name}) : super(key: key);
 
   @override
   PlanetNameState createState() {
@@ -46,22 +46,22 @@ class PlanetNameState extends State<PlanetName> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _setUpControllers(widget.name.split(''), widget.name.split(''));
+    _setUpControllers(widget.name!.split(''), widget.name!.split(''));
   }
 
   @override
   void didUpdateWidget(PlanetName oldWidget) {
     if (widget.name != oldWidget.name) {
       int min;
-      if (oldWidget.name.length != widget.name.length) {
-        min = Math.min(oldWidget.name.length, widget.name.length);
+      if (oldWidget.name!.length != widget.name!.length) {
+        min = Math.min(oldWidget.name!.length, widget.name!.length);
       } else {
-        min = oldWidget.name.length;
+        min = oldWidget.name!.length;
       }
       final List<String> oldTextChars = []
-        ..addAll(oldWidget.name.substring(0, min).split(''));
+        ..addAll(oldWidget.name!.substring(0, min).split(''));
       final List<String> newTextChars = []
-        ..addAll(widget.name.substring(0, min).split(''));
+        ..addAll(widget.name!.substring(0, min).split(''));
 
       _cleanUpControllers();
       _setUpControllers(newTextChars, oldTextChars);
@@ -77,7 +77,7 @@ class PlanetNameState extends State<PlanetName> with TickerProviderStateMixin {
 
   void _setUpControllers(List<String> newLetters, List<String> oldLetters) {
     for (int i = 0; i < newLetters.length; i++) {
-      AnimationController cntrllr = AnimationController(
+      AnimationController controller = AnimationController(
           duration: Duration(milliseconds: 1000), vsync: this)
         ..addListener(() {
           setState(() {});
@@ -88,14 +88,14 @@ class PlanetNameState extends State<PlanetName> with TickerProviderStateMixin {
         end: alphabets.indexOf(newLetters[i]),
       );
 
-      textChars.add({'cntrllr': cntrllr, 'tween': tween});
-      cntrllr.forward();
+      textChars.add({'controller': controller, 'tween': tween});
+      controller.forward();
     }
   }
 
   void _cleanUpControllers() {
     textChars.forEach((f) {
-      f['cntrllr'].dispose();
+      f['controller'].dispose();
     });
     textChars = [];
   }
@@ -105,7 +105,7 @@ class PlanetNameState extends State<PlanetName> with TickerProviderStateMixin {
     return RichText(
       overflow: TextOverflow.ellipsis,
       text: TextSpan(
-        style: Theme.of(context).textTheme.display3.copyWith(
+        style: Theme.of(context).textTheme.headline2!.copyWith(
               letterSpacing: 10.0,
               fontWeight: FontWeight.w200,
               fontSize: 85.0,
@@ -114,7 +114,7 @@ class PlanetNameState extends State<PlanetName> with TickerProviderStateMixin {
         children: textChars.length == 0
             ? []
             : textChars.map((Map<String, dynamic> f) {
-                final i = f['tween'].animate(f['cntrllr']).value;
+                final i = f['tween'].animate(f['controller']).value;
                 return TextSpan(
                   text: alphabets[i],
                 );

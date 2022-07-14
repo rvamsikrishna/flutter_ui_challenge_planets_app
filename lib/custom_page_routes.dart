@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class MyPageRoute extends MaterialPageRoute {
-  final Duration transDuation;
+  final Duration transDuration;
   MyPageRoute({
-    this.transDuation = const Duration(milliseconds: 1000),
-    WidgetBuilder builder,
-    RouteSettings settings,
+    this.transDuration = const Duration(milliseconds: 1000),
+    required WidgetBuilder builder,
+    RouteSettings? settings,
   }) : super(builder: builder, settings: settings);
 
   // @override
@@ -18,5 +18,5 @@ class MyPageRoute extends MaterialPageRoute {
   // }
 
   @override
-  Duration get transitionDuration => transDuation;
+  Duration get transitionDuration => transDuration;
 }

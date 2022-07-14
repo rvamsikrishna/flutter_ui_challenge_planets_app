@@ -176,16 +176,16 @@ class Planet extends CelestialBody {
   final List<Moon> moons;
 
   Planet({
-    String name,
+    String? name,
     this.moons = const [],
-    Color color,
-    double diameter,
-    String description,
-    String intro,
-    String formation,
-    String history,
-    String imgAssetPath,
-    String vidAssetPath,
+    Color? color,
+    double? diameter,
+    String? description,
+    String? intro,
+    String? formation,
+    String? history,
+    String? imgAssetPath,
+    String? vidAssetPath,
   }) : super(
           name: name,
           diameter: diameter,
@@ -201,13 +201,13 @@ class Planet extends CelestialBody {
 
 class Moon extends CelestialBody {
   Moon(
-      {String name,
-      String description,
-      String intro,
-      String formation,
-      String history,
-      String imgAssetPath,
-      String vidAssetPath})
+      {String? name,
+      String? description,
+      String? intro,
+      String? formation,
+      String? history,
+      String? imgAssetPath,
+      String? vidAssetPath})
       : super(
           name: name,
           diameter: 0.28,
@@ -222,20 +222,20 @@ class Moon extends CelestialBody {
 }
 
 class CelestialBody {
-  final String name;
-  final double diameter;
-  final Color color;
-  final String description;
-  final String intro;
-  final String formation;
-  final String history;
-  final String imgAssetPath;
-  final String vidAssetPath;
+  final String? name;
+  final double? diameter;
+  final Color? color;
+  final String? description;
+  final String? intro;
+  final String? formation;
+  final String? history;
+  final String? imgAssetPath;
+  final String? vidAssetPath;
 
   CelestialBody({
-    @required this.name,
-    @required this.diameter,
-    @required this.color,
+    required this.name,
+    required this.diameter,
+    required this.color,
     this.description,
     this.intro,
     this.formation,

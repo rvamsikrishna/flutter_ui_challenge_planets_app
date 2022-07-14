@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_xore/astronaut.dart';
-import 'package:flutter_xore/model.dart';
-import 'package:flutter_xore/planet_name.dart';
-import 'package:flutter_xore/planet_selector.dart';
+import 'astronaut.dart';
+import 'model.dart';
+import 'planet_name.dart';
+import 'planet_selector.dart';
 
 void main() => runApp(MyApp());
 
@@ -29,11 +29,11 @@ class HomePage extends StatefulWidget {
 class HomePageState extends State<HomePage> {
   final List<Planet> _planets = planets;
   int _currentPlanetIndex = 2;
-  final StreamController _navigationStreamCntrllr =
+  final StreamController _navigationStreamController =
       StreamController.broadcast();
 
   dispose() {
-    _navigationStreamCntrllr.close();
+    _navigationStreamController.close();
     super.dispose();
   }
 
@@ -67,7 +67,7 @@ class HomePageState extends State<HomePage> {
                 planets: _planets,
                 currentPlanetIndex: _currentPlanetIndex,
                 onArrowClick: _handleArrowClick,
-                onPlanetClicked: () => _navigationStreamCntrllr.sink.add(null),
+                onPlanetClicked: () => _navigationStreamController.sink.add(null),
               ),
             ),
           ),
@@ -84,7 +84,7 @@ class HomePageState extends State<HomePage> {
                       width: 400.0,
                       padding: EdgeInsets.only(left: 50.0),
                       child: PlanetName(
-                        name: _planets[_currentPlanetIndex].name.toUpperCase(),
+                        name: _planets[_currentPlanetIndex].name!.toUpperCase(),
                       ),
                     ),
                   ),
@@ -95,7 +95,7 @@ class HomePageState extends State<HomePage> {
                     size: screenSize,
                     planets: _planets,
                     currentPlanetIndex: _currentPlanetIndex,
-                    shouldNavigate: _navigationStreamCntrllr.stream,
+                    shouldNavigate: _navigationStreamController.stream,
                   ),
                 ),
               ],

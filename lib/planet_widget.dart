@@ -1,13 +1,13 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_xore/model.dart';
+import 'model.dart';
 
 class PlanetWidget extends StatefulWidget {
-  final Planet planet;
+  final Planet? planet;
   final bool currentlyInMainPos;
 
-  const PlanetWidget({Key key, this.planet, this.currentlyInMainPos = false})
+  const PlanetWidget({Key? key, this.planet, this.currentlyInMainPos = false})
       : super(key: key);
   @override
   _PlanetWidgetState createState() => _PlanetWidgetState();
@@ -17,9 +17,9 @@ class _PlanetWidgetState extends State<PlanetWidget>
     with TickerProviderStateMixin {
   final double constDiameter = 25.0;
   final double moonOrbitRadius = 20.0;
-  AnimationController _rotationController;
-  AnimationController _moonOrbitLengthController;
-  Animation<double> _moonOrbitLength;
+  late AnimationController _rotationController;
+  late AnimationController _moonOrbitLengthController;
+  late Animation<double> _moonOrbitLength;
 
   @override
   void initState() {
@@ -54,13 +54,13 @@ class _PlanetWidgetState extends State<PlanetWidget>
     super.dispose();
   }
 
-  bool get hasMoons => widget.planet.moons.length != 0;
+  bool get hasMoons => widget.planet!.moons.length != 0;
 
-  Widget _buildCelestialBody({@required CelestialBody body}) {
+  Widget _buildCelestialBody({required CelestialBody body}) {
     return Center(
       child: Container(
-        width: body.diameter * constDiameter,
-        height: body.diameter * constDiameter,
+        width: body.diameter! * constDiameter,
+        height: body.diameter! * constDiameter,
         decoration: BoxDecoration(
           color: body.color,
           shape: BoxShape.circle,
@@ -71,7 +71,7 @@ class _PlanetWidgetState extends State<PlanetWidget>
 
   @override
   Widget build(BuildContext context) {
-    final Planet planet = widget.planet;
+    final Planet planet = widget.planet!;
     final List<Moon> moons = planet.moons;
 
     final List<Widget> bodies = [_buildCelestialBody(body: planet)];
@@ -97,7 +97,7 @@ class _PlanetWidgetState extends State<PlanetWidget>
         width: 100.0,
         height: 100.0,
         child: Stack(
-          overflow: Overflow.visible,
+          clipBehavior: Clip.none,
           children: bodies,
         ),
       ),

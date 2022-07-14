@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_xore/celestial_body_widget.dart';
-import 'package:flutter_xore/custom_page_routes.dart';
-import 'package:flutter_xore/model.dart';
-import 'package:flutter_xore/planets_details_page.dart';
+import 'celestial_body_widget.dart';
+import 'custom_page_routes.dart';
+import 'model.dart';
+import 'planets_details_page.dart';
 
 class PlanetPage extends StatefulWidget {
-  final Planet currentPlanet;
+  final Planet? currentPlanet;
 
-  const PlanetPage({Key key, this.currentPlanet}) : super(key: key);
+  const PlanetPage({Key? key, this.currentPlanet}) : super(key: key);
 
   @override
   PlanetPageState createState() {
@@ -16,12 +16,12 @@ class PlanetPage extends StatefulWidget {
 }
 
 class PlanetPageState extends State<PlanetPage> with TickerProviderStateMixin {
-  Offset _verticalDragStart;
-  AnimationController _swipeAnimController;
-  AnimationController _slideInAnimController;
-  AnimationController _onNavigationAnimController;
+  Offset? _verticalDragStart;
+  late AnimationController _swipeAnimController;
+  late AnimationController _slideInAnimController;
+  late AnimationController _onNavigationAnimController;
 
-  TabController _tabController;
+  TabController? _tabController;
   @override
   void initState() {
     super.initState();
@@ -35,7 +35,7 @@ class PlanetPageState extends State<PlanetPage> with TickerProviderStateMixin {
         AnimationController(duration: Duration(milliseconds: 800), vsync: this);
 
     _tabController =
-        TabController(length: widget.currentPlanet.moons.length, vsync: this);
+        TabController(length: widget.currentPlanet!.moons.length, vsync: this);
 
     _slideInAnimController.forward();
     _onNavigationAnimController =
@@ -45,7 +45,7 @@ class PlanetPageState extends State<PlanetPage> with TickerProviderStateMixin {
   @override
   void dispose() {
     _swipeAnimController.dispose();
-    _tabController.dispose();
+    _tabController!.dispose();
     _slideInAnimController.dispose();
     _onNavigationAnimController.dispose();
     super.dispose();
@@ -71,13 +71,13 @@ class PlanetPageState extends State<PlanetPage> with TickerProviderStateMixin {
   }
 
   void _onVerticalDragUpdate(DragUpdateDetails details) {
-    if (widget.currentPlanet.moons.length > 0) {
-      if (_verticalDragStart.dy - details.globalPosition.dy > 50.0) {
+    if (widget.currentPlanet!.moons.length > 0) {
+      if (_verticalDragStart!.dy - details.globalPosition.dy > 50.0) {
         _swipeAnimController.reverse();
         _slideInAnimController.forward();
       }
 
-      if (_verticalDragStart.dy - details.globalPosition.dy < 0.0) {
+      if (_verticalDragStart!.dy - details.globalPosition.dy < 0.0) {
         _swipeAnimController.forward();
         _slideInAnimController.reverse();
       }
@@ -92,9 +92,9 @@ class PlanetPageState extends State<PlanetPage> with TickerProviderStateMixin {
     final double moonsWidgetHeight = 0.125 * screenSize.height;
     return TabBarView(
       controller: _tabController,
-      children: widget.currentPlanet.moons.map((Moon moon) {
+      children: widget.currentPlanet!.moons.map((Moon moon) {
         return Stack(
-          overflow: Overflow.visible,
+          clipBehavior: Clip.none,
           fit: StackFit.expand,
           children: <Widget>[
             Positioned(
@@ -119,11 +119,11 @@ class PlanetPageState extends State<PlanetPage> with TickerProviderStateMixin {
                 child: Hero(
                   tag: '${moon.name}heading',
                   child: Text(
-                    moon.name.toUpperCase(),
+                    moon.name!.toUpperCase(),
                     textAlign: TextAlign.center,
                     style: Theme.of(context)
                         .textTheme
-                        .subhead
+                        .subtitle1!
                         .copyWith(color: Colors.white, letterSpacing: 10.0),
                   ),
                 ),
@@ -150,7 +150,7 @@ class PlanetPageState extends State<PlanetPage> with TickerProviderStateMixin {
       children: <Widget>[
         SizedBox(height: 10.0),
         Text(
-          celestialBody.description,
+          celestialBody.description!,
           textAlign: TextAlign.center,
           maxLines: 2,
           style: TextStyle(
@@ -159,7 +159,7 @@ class PlanetPageState extends State<PlanetPage> with TickerProviderStateMixin {
             height: 1.5,
           ),
         ),
-        FlatButton(
+        ElevatedButton(
           child: Text(
             'Read More',
             style: TextStyle(
@@ -172,7 +172,7 @@ class PlanetPageState extends State<PlanetPage> with TickerProviderStateMixin {
             Navigator.of(context)
                 .push(
               MyPageRoute(
-                transDuation: Duration(milliseconds: 600),
+                transDuration: Duration(milliseconds: 600),
                 builder: (BuildContext context) {
                   return PlanetDetailsPage(
                     selected: celestialBody,
@@ -216,8 +216,8 @@ class PlanetPageState extends State<PlanetPage> with TickerProviderStateMixin {
             PositionedTransition(
               rect: _planetRect(screenSize),
               child: Hero(
-                tag: widget.currentPlanet.name,
-                child: CelestialBodyWidget(widget.currentPlanet.vidAssetPath),
+                tag: widget.currentPlanet!.name!,
+                child: CelestialBodyWidget(widget.currentPlanet!.vidAssetPath),
               ),
             ),
             PositionedTransition(
@@ -244,7 +244,7 @@ class PlanetPageState extends State<PlanetPage> with TickerProviderStateMixin {
                 ),
               ),
             ),
-            widget.currentPlanet.moons.length > 0
+            widget.currentPlanet!.moons.length > 0
                 ? Positioned(
                     top: screenSize.height * 0.65,
                     bottom: screenSize.height * 0.325,
@@ -274,14 +274,14 @@ class PlanetPageState extends State<PlanetPage> with TickerProviderStateMixin {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       Hero(
-                        tag: '${widget.currentPlanet.name}heading',
+                        tag: '${widget.currentPlanet!.name}heading',
                         child: Text(
-                          widget.currentPlanet.name.toUpperCase(),
-                          style: Theme.of(context).textTheme.subhead.copyWith(
+                          widget.currentPlanet!.name!.toUpperCase(),
+                          style: Theme.of(context).textTheme.subtitle1!.copyWith(
                               color: Colors.white, letterSpacing: 10.0),
                         ),
                       ),
-                      _descriptionColumn(widget.currentPlanet),
+                      _descriptionColumn(widget.currentPlanet!),
                     ],
                   ),
                 ),

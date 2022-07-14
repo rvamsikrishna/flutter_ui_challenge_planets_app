@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CelestialBodyWidget extends StatelessWidget {
-  final String imagePath;
+  final String? imagePath;
 
-  const CelestialBodyWidget(this.imagePath, {Key key}) : super(key: key);
+  const CelestialBodyWidget(this.imagePath, {Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,7 +22,7 @@ class CelestialBodyWidget extends StatelessWidget {
         ),
       ),
       child: Image.asset(
-        imagePath,
+        imagePath!,
         fit: BoxFit.contain,
       ),
     );

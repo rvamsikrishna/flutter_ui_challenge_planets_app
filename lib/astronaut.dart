@@ -1,18 +1,18 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_xore/custom_page_routes.dart';
-import 'package:flutter_xore/model.dart';
-import 'package:flutter_xore/planet_page.dart';
+import 'custom_page_routes.dart';
+import 'model.dart';
+import 'planet_page.dart';
 
 class Astronaut extends StatefulWidget {
-  final Size size;
-  final List<Planet> planets;
-  final int currentPlanetIndex;
-  final Stream shouldNavigate;
+  final Size? size;
+  final List<Planet>? planets;
+  final int? currentPlanetIndex;
+  final Stream? shouldNavigate;
 
   const Astronaut(
-      {Key key,
+      {Key? key,
       this.size,
       this.planets,
       this.currentPlanetIndex,
@@ -25,12 +25,12 @@ class Astronaut extends StatefulWidget {
 }
 
 class AstronautState extends State<Astronaut> with TickerProviderStateMixin {
-  AnimationController _smokeAnimController;
-  AnimationController _scaleAnimController;
-  AnimationController _floatingAnimController;
-  Animation<Offset> _floatingAnim;
-  TabController _tabController;
-  StreamSubscription _navigationSubscription;
+  late AnimationController _smokeAnimController;
+  late AnimationController _scaleAnimController;
+  late AnimationController _floatingAnimController;
+  late Animation<Offset> _floatingAnim;
+  TabController? _tabController;
+  late StreamSubscription _navigationSubscription;
 
   @override
   void initState() {
@@ -57,18 +57,18 @@ class AstronautState extends State<Astronaut> with TickerProviderStateMixin {
     _floatingAnimController.forward();
 
     _tabController = TabController(
-        initialIndex: widget.currentPlanetIndex,
-        length: widget.planets.length,
+        initialIndex: widget.currentPlanetIndex!,
+        length: widget.planets!.length,
         vsync: this);
 
-    _navigationSubscription = widget.shouldNavigate.listen((_) async {
+    _navigationSubscription = widget.shouldNavigate!.listen((_) async {
       Navigator.of(context)
           .push(
         MyPageRoute(
-          transDuation: Duration(milliseconds: 700),
+          transDuration: Duration(milliseconds: 700),
           builder: (BuildContext context) {
             return PlanetPage(
-              currentPlanet: widget.planets[widget.currentPlanetIndex],
+              currentPlanet: widget.planets![widget.currentPlanetIndex!],
             );
           },
         ),
@@ -90,7 +90,7 @@ class AstronautState extends State<Astronaut> with TickerProviderStateMixin {
   @override
   void didUpdateWidget(Astronaut oldWidget) {
     if (widget.currentPlanetIndex != oldWidget.currentPlanetIndex) {
-      _tabController.animateTo(widget.currentPlanetIndex);
+      _tabController!.animateTo(widget.currentPlanetIndex!);
     }
     super.didUpdateWidget(oldWidget);
   }
@@ -100,13 +100,13 @@ class AstronautState extends State<Astronaut> with TickerProviderStateMixin {
     super.dispose();
     _smokeAnimController.dispose();
     _floatingAnimController.dispose();
-    _tabController.dispose();
+    _tabController!.dispose();
     _navigationSubscription.cancel();
   }
 
   @override
   Widget build(BuildContext context) {
-    final double size = widget.size.width * 0.86;
+    final double size = widget.size!.width * 0.86;
     return SlideTransition(
       position: _floatingAnim,
       child: ScaleTransition(
@@ -143,7 +143,7 @@ class AstronautState extends State<Astronaut> with TickerProviderStateMixin {
                     child: TabBarView(
                       controller: _tabController,
                       physics: NeverScrollableScrollPhysics(),
-                      children: widget.planets.map((Planet p) {
+                      children: widget.planets!.map((Planet p) {
                         return PlanetViewImg(
                           p.imgAssetPath,
                           planetName: p.name,
@@ -175,11 +175,11 @@ class AstronautState extends State<Astronaut> with TickerProviderStateMixin {
 }
 
 class PlanetViewImg extends StatelessWidget {
-  final String planetName;
-  final String imgAssetPath;
+  final String? planetName;
+  final String? imgAssetPath;
   const PlanetViewImg(
     this.imgAssetPath, {
-    Key key,
+    Key? key,
     this.planetName,
   }) : super(key: key);
 
@@ -196,13 +196,15 @@ class PlanetViewImg extends StatelessWidget {
           return Container();
         } else if (flightDirection == HeroFlightDirection.push) {
           return toHeroContext.widget;
+        } else {
+          return Container();
         }
       },
       child: Container(
         padding: EdgeInsets.only(bottom: 20.0),
         alignment: Alignment.bottomCenter,
         child: Image.asset(
-          imgAssetPath,
+          imgAssetPath!,
           fit: BoxFit.cover,
         ),
       ),

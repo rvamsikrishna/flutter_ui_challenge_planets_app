@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_xore/celestial_body_widget.dart';
-import 'package:flutter_xore/model.dart';
+import 'celestial_body_widget.dart';
+import 'model.dart';
 
 class PlanetDetailsPage extends StatefulWidget {
-  final CelestialBody selected;
+  final CelestialBody? selected;
 
-  const PlanetDetailsPage({Key key, this.selected}) : super(key: key);
+  const PlanetDetailsPage({Key? key, this.selected}) : super(key: key);
 
   @override
   PlanetDetailsPageState createState() {
@@ -15,7 +15,7 @@ class PlanetDetailsPage extends StatefulWidget {
 
 class PlanetDetailsPageState extends State<PlanetDetailsPage>
     with SingleTickerProviderStateMixin {
-  TabController _tabController;
+  TabController? _tabController;
   final List<Widget> _tabs = [
     Tab(
       child: Container(
@@ -48,7 +48,7 @@ class PlanetDetailsPageState extends State<PlanetDetailsPage>
 
   @override
   void dispose() {
-    _tabController.dispose();
+    _tabController!.dispose();
     super.dispose();
   }
 
@@ -66,19 +66,19 @@ class PlanetDetailsPageState extends State<PlanetDetailsPage>
             left: 0.0,
             right: 0.0,
             child: Hero(
-              tag: widget.selected.name,
-              child: CelestialBodyWidget(widget.selected.vidAssetPath),
+              tag: widget.selected!.name!,
+              child: CelestialBodyWidget(widget.selected!.vidAssetPath),
             ),
           ),
           Positioned(
             top: screenSize.height * 0.05,
             child: Hero(
-              tag: '${widget.selected.name}heading',
+              tag: '${widget.selected!.name}heading',
               child: Text(
-                widget.selected.name.toUpperCase(),
+                widget.selected!.name!.toUpperCase(),
                 style: Theme.of(context)
                     .textTheme
-                    .subhead
+                    .subtitle1!
                     .copyWith(color: Colors.white, letterSpacing: 10.0),
               ),
             ),
@@ -107,16 +107,16 @@ class PlanetDetailsPageState extends State<PlanetDetailsPage>
 
 class InfoTabs extends StatelessWidget {
   const InfoTabs({
-    Key key,
-    @required TabController tabController,
-    @required List<Widget> tabs,
-    @required this.planet,
+    Key? key,
+    required TabController? tabController,
+    required List<Widget> tabs,
+    required this.planet,
   })  : _tabController = tabController,
         _tabs = tabs,
         super(key: key);
 
-  final CelestialBody planet;
-  final TabController _tabController;
+  final CelestialBody? planet;
+  final TabController? _tabController;
   final List<Widget> _tabs;
 
   @override
@@ -139,17 +139,17 @@ class InfoTabs extends StatelessWidget {
             children: <Widget>[
               _buildInfo(
                 context,
-                heading: planet.name,
-                intro: planet.intro,
+                heading: planet!.name,
+                intro: planet!.intro,
                 subHeading: 'Formation',
-                desc: planet.formation,
+                desc: planet!.formation,
               ),
               _buildInfo(
                 context,
-                heading: 'History of ${planet.name}',
-                intro: planet.intro,
+                heading: 'History of ${planet!.name}',
+                intro: planet!.intro,
                 subHeading: 'Details',
-                desc: planet.history,
+                desc: planet!.history,
               ),
               GridView.builder(
                 itemCount: 10,
@@ -174,7 +174,7 @@ class InfoTabs extends StatelessWidget {
   }
 
   ListView _buildInfo(BuildContext context,
-      {String heading, String subHeading, String intro, String desc}) {
+      {String? heading, String? subHeading, String? intro, String? desc}) {
     return ListView(
       padding: EdgeInsets.all(25.0),
       children: <Widget>[
@@ -211,7 +211,7 @@ class InfoTabs extends StatelessWidget {
         ),
         Text(
           '$subHeading',
-          style: Theme.of(context).textTheme.title,
+          style: Theme.of(context).textTheme.headline6,
         ),
         SizedBox(height: 30.0),
         Text(
