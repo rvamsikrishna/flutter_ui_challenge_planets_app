@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'model.dart';
+import '../model/model.dart';
 import 'planet_widget.dart';
 
 class PlanetSelector extends StatefulWidget {
@@ -23,7 +23,7 @@ class PlanetSelector extends StatefulWidget {
 
   @override
   PlanetSelectorState createState() {
-    return new PlanetSelectorState();
+    return PlanetSelectorState();
   }
 }
 
@@ -35,11 +35,12 @@ class PlanetSelectorState extends State<PlanetSelector>
   @override
   initState() {
     super.initState();
-    _controller =
-        AnimationController(duration: Duration(milliseconds: 500), vsync: this)
-          ..addListener(() {
-            setState(() {});
-          });
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 500),
+      vsync: this,
+    )..addListener(() {
+        setState(() {});
+      });
 
     _rotationTween = Tween<double>(
       begin: 0.0,
@@ -88,13 +89,13 @@ class PlanetSelectorState extends State<PlanetSelector>
           },
           child: Container(
             padding: const EdgeInsets.only(top: 40.0),
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 border: Border(
               bottom: BorderSide(color: Colors.grey, width: 2.5),
             )),
             child: Text(
-              '${widget.planets![widget.currentPlanetIndex!].name!.toUpperCase()}',
-              style: TextStyle(
+              widget.planets![widget.currentPlanetIndex!].name!.toUpperCase(),
+              style: const TextStyle(
                 color: Colors.grey,
                 fontSize: 20.0,
                 fontWeight: FontWeight.w500,
@@ -110,9 +111,9 @@ class PlanetSelectorState extends State<PlanetSelector>
     return Align(
       alignment: Alignment.topLeft,
       child: FractionalTranslation(
-        translation: Offset(1.0, -0.5),
+        translation: const Offset(1.0, -0.5),
         child: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.chevron_left,
             size: 35.0,
           ),
@@ -130,9 +131,9 @@ class PlanetSelectorState extends State<PlanetSelector>
     return Align(
       alignment: Alignment.topRight,
       child: FractionalTranslation(
-        translation: Offset(-1.0, -0.5),
+        translation: const Offset(-1.0, -0.5),
         child: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.chevron_right,
             size: 35.0,
           ),
@@ -176,7 +177,7 @@ class PlanetSelectorState extends State<PlanetSelector>
       );
     }
 
-    return Container(
+    return SizedBox(
       height: _widgetHeight,
       child: Stack(
         alignment: Alignment.center,
@@ -186,4 +187,5 @@ class PlanetSelectorState extends State<PlanetSelector>
   }
 }
 
+// ignore: constant_identifier_names
 enum ClickDirection { Left, Right }

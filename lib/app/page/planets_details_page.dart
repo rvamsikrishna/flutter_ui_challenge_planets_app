@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'celestial_body_widget.dart';
-import 'model.dart';
+import '../widgets/celestial_body_widget.dart';
+import '../model/model.dart';
 
 class PlanetDetailsPage extends StatefulWidget {
   final CelestialBody? selected;
@@ -9,7 +9,7 @@ class PlanetDetailsPage extends StatefulWidget {
 
   @override
   PlanetDetailsPageState createState() {
-    return new PlanetDetailsPageState();
+    return PlanetDetailsPageState();
   }
 }
 
@@ -21,21 +21,21 @@ class PlanetDetailsPageState extends State<PlanetDetailsPage>
       child: Container(
         alignment: Alignment.center,
         color: Colors.grey.shade100,
-        child: Text('DISCOVER'),
+        child: const Text('DISCOVER'),
       ),
     ),
     Tab(
       child: Container(
         alignment: Alignment.center,
         color: Colors.grey.shade100,
-        child: Text('HISTORY'),
+        child: const Text('HISTORY'),
       ),
     ),
     Tab(
       child: Container(
         alignment: Alignment.center,
         color: Colors.grey.shade100,
-        child: Text('IMAGES'),
+        child: const Text('IMAGES'),
       ),
     )
   ];
@@ -56,7 +56,7 @@ class PlanetDetailsPageState extends State<PlanetDetailsPage>
   @override
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
-    print(screenSize.height);
+    print('ScreenSize: ${screenSize.height}');
     return Material(
       color: Colors.black,
       child: Stack(
@@ -126,9 +126,9 @@ class InfoTabs extends StatelessWidget {
         TabBar(
           controller: _tabController,
           tabs: _tabs,
-          labelPadding: EdgeInsets.all(0.0),
+          labelPadding: const EdgeInsets.all(0.0),
           labelColor: Colors.grey.shade600,
-          labelStyle: TextStyle(letterSpacing: 3.0),
+          labelStyle: const TextStyle(letterSpacing: 3.0),
           indicatorColor: Colors.grey.shade600,
           indicatorWeight: 4.0,
           indicatorSize: TabBarIndicatorSize.label,
@@ -153,8 +153,8 @@ class InfoTabs extends StatelessWidget {
               ),
               GridView.builder(
                 itemCount: 10,
-                padding: EdgeInsets.all(20.0),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                padding: const EdgeInsets.all(20.0),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 1,
                   crossAxisSpacing: 10.0,
@@ -176,23 +176,23 @@ class InfoTabs extends StatelessWidget {
   ListView _buildInfo(BuildContext context,
       {String? heading, String? subHeading, String? intro, String? desc}) {
     return ListView(
-      padding: EdgeInsets.all(25.0),
+      padding: const EdgeInsets.all(25.0),
       children: <Widget>[
         Text(
           'The $heading',
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.black,
             fontSize: 30.0,
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(height: 30.0),
+        const SizedBox(height: 30.0),
         Text(
           '$intro',
-          style: TextStyle(height: 1.25),
+          style: const TextStyle(height: 1.25),
         ),
         Container(
-          padding: EdgeInsets.symmetric(vertical: 30.0),
+          padding: const EdgeInsets.symmetric(vertical: 30.0),
           height: 200.0,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
@@ -213,10 +213,10 @@ class InfoTabs extends StatelessWidget {
           '$subHeading',
           style: Theme.of(context).textTheme.headline6,
         ),
-        SizedBox(height: 30.0),
+        const SizedBox(height: 30.0),
         Text(
           '$desc',
-          style: TextStyle(height: 1.25),
+          style: const TextStyle(height: 1.25),
         ),
       ],
     );

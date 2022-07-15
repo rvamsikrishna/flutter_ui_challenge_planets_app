@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'custom_page_routes.dart';
-import 'model.dart';
+import '../../routes.dart';
+import '../model/model.dart';
 import 'planet_page.dart';
 
 class Astronaut extends StatefulWidget {
@@ -20,7 +20,7 @@ class Astronaut extends StatefulWidget {
       : super(key: key);
   @override
   AstronautState createState() {
-    return new AstronautState();
+    return AstronautState();
   }
 }
 
@@ -35,14 +35,20 @@ class AstronautState extends State<Astronaut> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _smokeAnimController =
-        AnimationController(duration: Duration(seconds: 35), vsync: this);
+    _smokeAnimController = AnimationController(
+      duration: const Duration(seconds: 35),
+      vsync: this,
+    );
 
     _floatingAnimController = AnimationController(
-        duration: Duration(milliseconds: 1700), vsync: this);
+      duration: const Duration(milliseconds: 1700),
+      vsync: this,
+    );
 
-    _floatingAnim = Tween<Offset>(begin: Offset.zero, end: Offset(0.0, 0.025))
-        .animate(_floatingAnimController);
+    _floatingAnim = Tween<Offset>(
+      begin: Offset.zero,
+      end: const Offset(0.0, 0.025),
+    ).animate(_floatingAnimController);
 
     _smokeAnimController.repeat();
 
@@ -57,15 +63,16 @@ class AstronautState extends State<Astronaut> with TickerProviderStateMixin {
     _floatingAnimController.forward();
 
     _tabController = TabController(
-        initialIndex: widget.currentPlanetIndex!,
-        length: widget.planets!.length,
-        vsync: this);
+      initialIndex: widget.currentPlanetIndex!,
+      length: widget.planets!.length,
+      vsync: this,
+    );
 
     _navigationSubscription = widget.shouldNavigate!.listen((_) async {
       Navigator.of(context)
           .push(
         MyPageRoute(
-          transDuration: Duration(milliseconds: 700),
+          transDuration: const Duration(milliseconds: 700),
           builder: (BuildContext context) {
             return PlanetPage(
               currentPlanet: widget.planets![widget.currentPlanetIndex!],
@@ -81,10 +88,11 @@ class AstronautState extends State<Astronaut> with TickerProviderStateMixin {
     });
 
     _scaleAnimController = AnimationController(
-        lowerBound: 1.0,
-        upperBound: 7.0,
-        duration: Duration(milliseconds: 700),
-        vsync: this);
+      lowerBound: 1.0,
+      upperBound: 7.0,
+      duration: const Duration(milliseconds: 700),
+      vsync: this,
+    );
   }
 
   @override
@@ -111,7 +119,7 @@ class AstronautState extends State<Astronaut> with TickerProviderStateMixin {
       position: _floatingAnim,
       child: ScaleTransition(
         scale: _scaleAnimController,
-        child: Container(
+        child: SizedBox(
           width: size,
           height: size,
           child: Stack(
@@ -127,22 +135,28 @@ class AstronautState extends State<Astronaut> with TickerProviderStateMixin {
                 child: Container(
                   width: size * 0.5,
                   height: size * 0.5,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.black,
                   ),
-                  foregroundDecoration: BoxDecoration(
+                  foregroundDecoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     gradient: LinearGradient(
                         begin: Alignment.center,
                         end: Alignment.bottomCenter,
-                        colors: <Color>[Colors.transparent, Colors.black],
-                        stops: [0.1, 0.8]),
+                        colors: <Color>[
+                          Colors.transparent,
+                          Colors.black,
+                        ],
+                        stops: [
+                          0.1,
+                          0.8
+                        ]),
                   ),
                   child: ClipOval(
                     child: TabBarView(
                       controller: _tabController,
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       children: widget.planets!.map((Planet p) {
                         return PlanetViewImg(
                           p.imgAssetPath,
@@ -201,7 +215,7 @@ class PlanetViewImg extends StatelessWidget {
         }
       },
       child: Container(
-        padding: EdgeInsets.only(bottom: 20.0),
+        padding: const EdgeInsets.only(bottom: 20.0),
         alignment: Alignment.bottomCenter,
         child: Image.asset(
           imgAssetPath!,

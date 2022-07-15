@@ -2,18 +2,20 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'astronaut.dart';
-import 'model.dart';
-import 'planet_name.dart';
-import 'planet_selector.dart';
+import 'app/page/astronaut.dart';
+import 'app/model/model.dart';
+import 'app/static/planet_name.dart';
+import 'app/widgets/planet_selector.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: HomePage(),
     );
@@ -21,9 +23,11 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
   @override
   HomePageState createState() {
-    return new HomePageState();
+    return HomePageState();
   }
 }
 
@@ -33,6 +37,7 @@ class HomePageState extends State<HomePage> {
   final StreamController _navigationStreamController =
       StreamController.broadcast();
 
+  @override
   dispose() {
     _navigationStreamController.close();
     super.dispose();
@@ -62,7 +67,7 @@ class HomePageState extends State<HomePage> {
           Align(
             alignment: Alignment.bottomCenter,
             child: FractionalTranslation(
-              translation: Offset(0.0, 0.65),
+              translation: const Offset(0.0, 0.65),
               child: PlanetSelector(
                 screenSize: screenSize,
                 planets: _planets,
@@ -73,7 +78,7 @@ class HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          Container(
+          SizedBox(
             height: screenSize.height * 0.8,
             width: double.infinity,
             child: Stack(
@@ -84,7 +89,7 @@ class HomePageState extends State<HomePage> {
                     quarterTurns: 1,
                     child: Container(
                       width: 400.0,
-                      padding: EdgeInsets.only(left: 50.0),
+                      padding: const EdgeInsets.only(left: 50.0),
                       child: PlanetName(
                         name: _planets[_currentPlanetIndex].name!.toUpperCase(),
                       ),

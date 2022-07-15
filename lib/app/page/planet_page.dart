@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'celestial_body_widget.dart';
-import 'custom_page_routes.dart';
-import 'model.dart';
+import '../widgets/celestial_body_widget.dart';
+import '../../routes.dart';
+import '../model/model.dart';
 import 'planets_details_page.dart';
 
 class PlanetPage extends StatefulWidget {
@@ -11,7 +11,7 @@ class PlanetPage extends StatefulWidget {
 
   @override
   PlanetPageState createState() {
-    return new PlanetPageState();
+    return PlanetPageState();
   }
 }
 
@@ -25,21 +25,27 @@ class PlanetPageState extends State<PlanetPage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _swipeAnimController =
-        AnimationController(duration: Duration(milliseconds: 600), vsync: this)
-          ..addListener(() {
-            setState(() {});
-          });
+    _swipeAnimController = AnimationController(
+      duration: const Duration(milliseconds: 600),
+      vsync: this,
+    )..addListener(() {
+        setState(() {});
+      });
 
-    _slideInAnimController =
-        AnimationController(duration: Duration(milliseconds: 800), vsync: this);
+    _slideInAnimController = AnimationController(
+      duration: const Duration(milliseconds: 800),
+      vsync: this,
+    );
 
     _tabController =
         TabController(length: widget.currentPlanet!.moons.length, vsync: this);
 
     _slideInAnimController.forward();
-    _onNavigationAnimController =
-        AnimationController(duration: Duration(milliseconds: 600), vsync: this);
+    _onNavigationAnimController = AnimationController(
+        duration: const Duration(
+          milliseconds: 600,
+        ),
+        vsync: this);
   }
 
   @override
@@ -71,7 +77,7 @@ class PlanetPageState extends State<PlanetPage> with TickerProviderStateMixin {
   }
 
   void _onVerticalDragUpdate(DragUpdateDetails details) {
-    if (widget.currentPlanet!.moons.length > 0) {
+    if (widget.currentPlanet!.moons.isNotEmpty) {
       if (_verticalDragStart!.dy - details.globalPosition.dy > 50.0) {
         _swipeAnimController.reverse();
         _slideInAnimController.forward();
@@ -108,23 +114,23 @@ class PlanetPageState extends State<PlanetPage> with TickerProviderStateMixin {
               ),
             ),
             AnimatedPositioned(
-              duration: Duration(milliseconds: 200),
+              duration: const Duration(milliseconds: 200),
               curve: Curves.ease,
               right: 0.0,
               left: 0.0,
               top: 1.1 * moonsWidgetHeight * _swipeAnimController.value,
               child: AnimatedOpacity(
-                duration: Duration(milliseconds: 200),
+                duration: const Duration(milliseconds: 200),
                 opacity: _swipeAnimController.value.clamp(0.4, 1.0),
                 child: Hero(
                   tag: '${moon.name}heading',
                   child: Text(
                     moon.name!.toUpperCase(),
                     textAlign: TextAlign.center,
-                    style: Theme.of(context)
-                        .textTheme
-                        .subtitle1!
-                        .copyWith(color: Colors.white, letterSpacing: 10.0),
+                    style: Theme.of(context).textTheme.subtitle1!.copyWith(
+                          color: Colors.white,
+                          letterSpacing: 10.0,
+                        ),
                   ),
                 ),
               ),
@@ -148,19 +154,19 @@ class PlanetPageState extends State<PlanetPage> with TickerProviderStateMixin {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        SizedBox(height: 10.0),
+        const SizedBox(height: 10.0),
         Text(
           celestialBody.description!,
           textAlign: TextAlign.center,
           maxLines: 2,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white54,
             fontSize: 12.0,
             height: 1.5,
           ),
         ),
         ElevatedButton(
-          child: Text(
+          child: const Text(
             'Read More',
             style: TextStyle(
               color: Colors.white54,
@@ -172,7 +178,7 @@ class PlanetPageState extends State<PlanetPage> with TickerProviderStateMixin {
             Navigator.of(context)
                 .push(
               MyPageRoute(
-                transDuration: Duration(milliseconds: 600),
+                transDuration: const Duration(milliseconds: 600),
                 builder: (BuildContext context) {
                   return PlanetDetailsPage(
                     selected: celestialBody,
@@ -230,9 +236,10 @@ class PlanetPageState extends State<PlanetPage> with TickerProviderStateMixin {
               child: IgnorePointer(
                 ignoring: true,
                 child: SlideTransition(
-                  position:
-                      Tween<Offset>(begin: Offset.zero, end: Offset(0.0, 1.0))
-                          .animate(_onNavigationAnimController),
+                  position: Tween<Offset>(
+                    begin: Offset.zero,
+                    end: const Offset(0.0, 1.0),
+                  ).animate(_onNavigationAnimController),
                   child: ScaleTransition(
                     scale: Tween<double>(begin: 1.0, end: 1.05)
                         .animate(_swipeAnimController),
@@ -244,7 +251,7 @@ class PlanetPageState extends State<PlanetPage> with TickerProviderStateMixin {
                 ),
               ),
             ),
-            widget.currentPlanet!.moons.length > 0
+            widget.currentPlanet!.moons.isNotEmpty
                 ? Positioned(
                     top: screenSize.height * 0.65,
                     bottom: screenSize.height * 0.325,
@@ -253,7 +260,7 @@ class PlanetPageState extends State<PlanetPage> with TickerProviderStateMixin {
                     child: Column(
                       children: <Widget>[
                         _buildSwipeIndicator(_swipeAnimController.value < 1.0),
-                        SizedBox(height: 3.0),
+                        const SizedBox(height: 3.0),
                         _buildSwipeIndicator(_swipeAnimController.value > 0.0),
                       ],
                     ),
@@ -265,8 +272,8 @@ class PlanetPageState extends State<PlanetPage> with TickerProviderStateMixin {
               left: screenSize.width * 0.15,
               child: SlideTransition(
                 position: Tween<Offset>(
-                  begin: Offset(0.0, 1.0),
-                  end: Offset(0.0, 0.0),
+                  begin: const Offset(0.0, 1.0),
+                  end: const Offset(0.0, 0.0),
                 ).animate(_slideInAnimController),
                 child: FadeTransition(
                   opacity: _slideInAnimController,
@@ -277,8 +284,11 @@ class PlanetPageState extends State<PlanetPage> with TickerProviderStateMixin {
                         tag: '${widget.currentPlanet!.name}heading',
                         child: Text(
                           widget.currentPlanet!.name!.toUpperCase(),
-                          style: Theme.of(context).textTheme.subtitle1!.copyWith(
-                              color: Colors.white, letterSpacing: 10.0),
+                          style: Theme.of(context)
+                              .textTheme
+                              .subtitle1!
+                              .copyWith(
+                                  color: Colors.white, letterSpacing: 10.0),
                         ),
                       ),
                       _descriptionColumn(widget.currentPlanet!),

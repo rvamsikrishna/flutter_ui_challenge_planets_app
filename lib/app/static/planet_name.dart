@@ -1,3 +1,4 @@
+// ignore: library_prefixes
 import 'dart:math' as Math;
 
 import 'package:flutter/material.dart';
@@ -9,12 +10,12 @@ class PlanetName extends StatefulWidget {
 
   @override
   PlanetNameState createState() {
-    return new PlanetNameState();
+    return PlanetNameState();
   }
 }
 
 class PlanetNameState extends State<PlanetName> with TickerProviderStateMixin {
-  static const List<String> alphabets = const [
+  static const List<String> alphabets = [
     'A',
     'B',
     'C',
@@ -58,10 +59,12 @@ class PlanetNameState extends State<PlanetName> with TickerProviderStateMixin {
       } else {
         min = oldWidget.name!.length;
       }
-      final List<String> oldTextChars = []
-        ..addAll(oldWidget.name!.substring(0, min).split(''));
-      final List<String> newTextChars = []
-        ..addAll(widget.name!.substring(0, min).split(''));
+      final List<String> oldTextChars = [
+        ...oldWidget.name!.substring(0, min).split('')
+      ];
+      final List<String> newTextChars = [
+        ...widget.name!.substring(0, min).split('')
+      ];
 
       _cleanUpControllers();
       _setUpControllers(newTextChars, oldTextChars);
@@ -78,8 +81,9 @@ class PlanetNameState extends State<PlanetName> with TickerProviderStateMixin {
   void _setUpControllers(List<String> newLetters, List<String> oldLetters) {
     for (int i = 0; i < newLetters.length; i++) {
       AnimationController controller = AnimationController(
-          duration: Duration(milliseconds: 1000), vsync: this)
-        ..addListener(() {
+        duration: const Duration(milliseconds: 1000),
+        vsync: this,
+      )..addListener(() {
           setState(() {});
         });
 
@@ -94,9 +98,9 @@ class PlanetNameState extends State<PlanetName> with TickerProviderStateMixin {
   }
 
   void _cleanUpControllers() {
-    textChars.forEach((f) {
+    for (var f in textChars) {
       f['controller'].dispose();
-    });
+    }
     textChars = [];
   }
 
@@ -111,7 +115,7 @@ class PlanetNameState extends State<PlanetName> with TickerProviderStateMixin {
               fontSize: 85.0,
               color: Colors.grey.shade400,
             ),
-        children: textChars.length == 0
+        children: textChars.isEmpty
             ? []
             : textChars.map((Map<String, dynamic> f) {
                 final i = f['tween'].animate(f['controller']).value;

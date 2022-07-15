@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'model.dart';
+import '../model/model.dart';
 
 class PlanetWidget extends StatefulWidget {
   final Planet? planet;
@@ -25,13 +25,13 @@ class _PlanetWidgetState extends State<PlanetWidget>
   void initState() {
     super.initState();
     _rotationController =
-        AnimationController(duration: Duration(seconds: 4), vsync: this);
+        AnimationController(duration: const Duration(seconds: 4), vsync: this,);
     if (hasMoons) {
       _rotationController.repeat();
     }
 
     _moonOrbitLengthController =
-        AnimationController(duration: Duration(milliseconds: 700), vsync: this)
+        AnimationController(duration: const Duration(milliseconds: 700), vsync: this,)
           ..addListener(() {
             setState(() {});
           });
@@ -54,7 +54,7 @@ class _PlanetWidgetState extends State<PlanetWidget>
     super.dispose();
   }
 
-  bool get hasMoons => widget.planet!.moons.length != 0;
+  bool get hasMoons => widget.planet!.moons.isNotEmpty;
 
   Widget _buildCelestialBody({required CelestialBody body}) {
     return Center(
@@ -76,7 +76,7 @@ class _PlanetWidgetState extends State<PlanetWidget>
 
     final List<Widget> bodies = [_buildCelestialBody(body: planet)];
 
-    if (moons.length > 0 && widget.currentlyInMainPos) {
+    if (moons.isNotEmpty && widget.currentlyInMainPos) {
       for (int i = 0; i < moons.length; i++) {
         final double radians = (2 * pi / moons.length) * i;
         final double dx = _moonOrbitLength.value * cos(radians);
@@ -93,7 +93,7 @@ class _PlanetWidgetState extends State<PlanetWidget>
 
     return RotationTransition(
       turns: _rotationController,
-      child: Container(
+      child: SizedBox(
         width: 100.0,
         height: 100.0,
         child: Stack(
